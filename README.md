@@ -1,2 +1,3 @@
 # phpcs-ruleset
-An opinionated PHP-CS-Fixer Ruleset
+
+An opinionated PHP CodeSniffer and PHP-CS-Fixer Ruleset
