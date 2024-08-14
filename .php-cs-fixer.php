@@ -39,10 +39,6 @@ return $config
         'max_line_breaks' => 1,
         'min_line_breaks' => 1
       ],
-      // The body of each structure MUST be enclosed by braces. Braces should be properly placed. Body of braces should be properly indented.
-      'braces' => [
-        'position_after_functions_and_oop_constructs' => 'same'
-      ],
       // Braces must be placed as configured.
       'braces_position' => [
         'classes_opening_brace' => 'same_line',
@@ -78,8 +74,6 @@ return $config
       'comment_to_phpdoc' => true,
       // Remove extra spaces in a nullable type declaration.
       'compact_nullable_type_declaration' => true,
-      // Remove extra spaces in a nullable typehint.
-      'compact_nullable_typehint' => true,
       // Concatenation should be spaced according to configuration.
       'concat_space' => [
         'spacing' => 'one'
@@ -90,11 +84,6 @@ return $config
       'control_structure_braces' => true,
       // Control structure continuation keyword must be on the configured line.
       'control_structure_continuation_position' => true,
-      // Curly braces must be placed as configured.
-      'curly_braces_position' => [
-        'classes_opening_brace' => 'same_line',
-        'functions_opening_brace' => 'same_line'
-      ],
       // The first argument of `DateTime::createFromFormat` method must start with `!`.
       'date_time_create_from_format_call' => true,
       // Class `DateTimeImmutable` should be used instead of `DateTime`.
@@ -454,8 +443,6 @@ return $config
       'simplified_null_return' => true,
       // A PHP file without end tag must always end with a single empty line feed.
       'single_blank_line_at_eof' => true,
-      // There should be exactly one blank line before a namespace declaration.
-      'single_blank_line_before_namespace' => true,
       // There MUST NOT be more than one property or constant declared per statement.
       'single_class_element_per_statement' => true,
       // There MUST be one use keyword per declaration.
