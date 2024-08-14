@@ -1,7 +1,7 @@
 <?php
 /*
  * This document has been generated with
- * https://mlocati.github.io/php-cs-fixer-configurator/#version:3.12.0|configurator
+ * https://mlocati.github.io/php-cs-fixer-configurator/#version:3.62.0|configurator
  * you can change this configuration by importing this file.
  */
 $config = new PhpCsFixer\Config();
@@ -22,6 +22,8 @@ return $config
       'array_syntax' => true,
       // Use the null coalescing assignment operator `??=` where possible.
       'assign_null_coalescing_to_coalesce_equal' => true,
+      // PHP attributes declared without arguments must (not) be followed by empty parentheses.
+      'attribute_empty_parentheses' => true,
       // Converts backtick operators to `shell_exec` calls.
       'backtick_to_shell_exec' => true,
       // Binary operators should be surrounded by space as configured.
@@ -32,9 +34,19 @@ return $config
       'blank_line_before_statement' => true,
       // Putting blank lines between `use` statement groups.
       'blank_line_between_import_groups' => true,
+      // Controls blank lines before a namespace declaration.
+      'blank_lines_before_namespace' => [
+        'max_line_breaks' => 1,
+        'min_line_breaks' => 1
+      ],
       // The body of each structure MUST be enclosed by braces. Braces should be properly placed. Body of braces should be properly indented.
       'braces' => [
         'position_after_functions_and_oop_constructs' => 'same'
+      ],
+      // Braces must be placed as configured.
+      'braces_position' => [
+        'classes_opening_brace' => 'same_line',
+        'functions_opening_brace' => 'same_line'
       ],
       // A single space or none should be between cast and variable.
       'cast_spaces' => [
@@ -64,9 +76,11 @@ return $config
       'combine_nested_dirname' => true,
       // Comments with annotation should be docblock when used on structural elements.
       'comment_to_phpdoc' => true,
+      // Remove extra spaces in a nullable type declaration.
+      'compact_nullable_type_declaration' => true,
       // Remove extra spaces in a nullable typehint.
       'compact_nullable_typehint' => true,
-      // Concatenation should be spaced according configuration.
+      // Concatenation should be spaced according to configuration.
       'concat_space' => [
         'spacing' => 'one'
       ],
@@ -113,21 +127,23 @@ return $config
       'explicit_string_variable' => true,
       // Order the flags in `fopen` calls, `b` and `t` must be last.
       'fopen_flag_order' => true,
-      // Transforms imported FQCN parameters and return types in function arguments to short version.
+      // The flags in `fopen` calls must omit `t`, and `b` must be omitted or included consistently.
+      'fopen_flags' => true,
+      // PHP code must use the long `<?php` tags or short-echo `<?=` tags and not other tag variations.
+      'full_opening_tag' => true,
+      // Removes the leading part of fully qualified symbol references if a given symbol is imported or belongs to the current namespace.
       'fully_qualified_strict_types' => true,
       // Spaces should be properly placed in a function declaration.
       'function_declaration' => true,
       // Replace core functions calls returning constants with the constants.
       'function_to_constant' => true,
-      // Ensure single space between function's argument and its typehint.
-      'function_typehint_space' => true,
       // Replace `get_class` calls on object variables with class keyword syntax.
       'get_class_to_class_keyword' => true,
       // Imports or fully qualifies global classes/functions/constants.
       'global_namespace_import' => true,
       // Function `implode` must be called with 2 arguments in the documented order.
       'implode_call' => true,
-      // Include/Require and file path should be divided with a single space. File path should not be placed under brackets.
+      // Include/Require and file path should be divided with a single space. File path should not be placed within parentheses.
       'include' => true,
       // Code MUST use configured indentation type.
       'indentation_type' => true,
@@ -155,6 +171,8 @@ return $config
       'magic_constant_casing' => true,
       // Magic method definitions and calls must be using the correct casing.
       'magic_method_casing' => true,
+      // Replace non multibyte-safe functions with corresponding mb function.
+      'mb_str_functions' => true,
       // In method arguments and method call, there MUST NOT be a space before each comma and there MUST be one space after each comma. Argument lists MAY be split across multiple lines, where each subsequent line is indented once. When doing so, the first item in the list MUST be on the next line, and there MUST be only one argument per line.
       'method_argument_space' => true,
       // Method chaining MUST be properly indented. Method chaining with different levels of indentation is not supported.
@@ -165,21 +183,25 @@ return $config
       'modernize_types_casting' => true,
       // DocBlocks must start with two asterisks, multiline comments must start with a single asterisk, after the opening slash. Both must end with a single asterisk before the closing slash.
       'multiline_comment_opening_closing' => true,
+      // Convert multiline string to `heredoc` or `nowdoc`.
+      'multiline_string_to_heredoc' => true,
       // Forbid multi-line whitespace before the closing semicolon or move the semicolon to the new line for chained calls.
       'multiline_whitespace_before_semicolons' => true,
+      // Add leading `\` before constant invocation of internal constant to speed up resolving. Constant name match is case-sensitive, except for `null`, `false` and `true`.
+      'native_constant_invocation' => [
+        'scope' => 'namespaced'
+      ],
       // Function defined by PHP should be called using the correct casing.
       'native_function_casing' => true,
       // Add leading `\` before function invocation to speed up resolving.
       'native_function_invocation' => true,
-      // Native type hints for functions should use the correct case.
-      'native_function_type_declaration_casing' => true,
-      // All instances created with `new` keyword must (not) be followed by braces.
-      'new_with_braces' => true,
+      // Native type declarations should be used in the correct case.
+      'native_type_declaration_casing' => true,
+      // All instances created with `new` keyword must (not) be followed by parentheses.
+      'new_with_parentheses' => true,
       // Master functions shall be used instead of aliases.
       'no_alias_functions' => [
-        'sets' => [
-          '@all'
-        ]
+        'sets' => ['@all']
       ],
       // Master language constructs shall be used instead of aliases.
       'no_alias_language_construct_call' => true,
@@ -227,8 +249,6 @@ return $config
       'no_spaces_after_function_name' => true,
       // There MUST NOT be spaces around offset braces.
       'no_spaces_around_offset' => true,
-      // There MUST NOT be a space after the opening parenthesis. There MUST NOT be a space before the closing parenthesis.
-      'no_spaces_inside_parenthesis' => true,
       // Replaces superfluous `elseif` with `if`.
       'no_superfluous_elseif' => true,
       // Removes `@param`, `@return` and `@var` tags that don't provide any useful information.
@@ -239,10 +259,12 @@ return $config
       'no_trailing_whitespace' => true,
       // There MUST be no trailing spaces inside comment or PHPDoc.
       'no_trailing_whitespace_in_comment' => true,
+      // Removes unneeded braces that are superfluous and aren't part of a control structure's body.
+      'no_unneeded_braces' => [
+        'namespaces' => true
+      ],
       // Removes unneeded parentheses around control statements.
       'no_unneeded_control_parentheses' => true,
-      // Removes unneeded curly braces that are superfluous and aren't part of a control structure's body.
-      'no_unneeded_curly_braces' => true,
       // Imports should not be aliased as the same name.
       'no_unneeded_import_alias' => true,
       // Variables must be set `null` instead of using `(unset)` casting.
@@ -255,7 +277,7 @@ return $config
       'no_useless_concat_operator' => true,
       // There should not be useless `else` cases.
       'no_useless_else' => true,
-      // There should not be useless `null-safe-operators` `?->` used.
+      // There should not be useless Null-safe operator `?->` used.
       'no_useless_nullsafe_operator' => true,
       // There should not be an empty `return` statement at the end of a function.
       'no_useless_return' => true,
@@ -271,7 +293,11 @@ return $config
       'normalize_index_brace' => true,
       // Logical NOT operators (`!`) should have one trailing whitespace.
       'not_operator_with_successor_space' => true,
-      // Adds or removes `?` before type declarations for parameters with a default `null` value.
+      // Nullable single type declaration should be standardised using configured syntax.
+      'nullable_type_declaration' => [
+        'syntax' => 'union'
+      ],
+      // Adds or removes `?` before single type declarations or `|null` at the end of union types when parameters have a default `null` value.
       'nullable_type_declaration_for_default_null_value' => true,
       // There should not be space before or after object operators `->` and `?->`.
       'object_operator_without_whitespace' => true,
@@ -279,6 +305,8 @@ return $config
       'octal_notation' => true,
       // Operators - when multiline - must always be at the beginning or at the end of the line.
       'operator_linebreak' => true,
+      // Sorts attributes using the configured sort algorithm.
+      'ordered_attributes' => true,
       // Orders the elements of classes/interfaces/traits/enums.
       'ordered_class_elements' => [
         'order' => [
@@ -306,10 +334,24 @@ return $config
       'ordered_interfaces' => true,
       // Trait `use` statements must be sorted alphabetically.
       'ordered_traits' => true,
+      // Sort union types and intersection types using configured order.
+      'ordered_types' => [
+        'null_adjustment' => 'always_last'
+      ],
+      // Rename deprecated PHPUnit assertions like `assertFileNotExists` to new methods like `assertFileDoesNotExist`.
+      'php_unit_assert_new_names' => true,
+      // PHPUnit attributes must be used over their respective PHPDoc-based annotations.
+      'php_unit_attributes' => true,
       // PHPUnit assertion method calls like `->assertSame(true, $foo)` should be written with dedicated method like `->assertTrue($foo)`.
       'php_unit_construct' => true,
+      // The return type of PHPUnit data provider must be `iterable`.
+      'php_unit_data_provider_return_type' => true,
+      // Data providers must be static.
+      'php_unit_data_provider_static' => true,
       // PHPUnit assertions like `assertInternalType`, `assertFileExists`, should be used over `assertTrue`.
       'php_unit_dedicate_assert' => true,
+      // PHPUnit assertions like `assertIsArray` should be used over `assertInternalType`.
+      'php_unit_dedicate_assert_internal_type' => true,
       // Usages of `->setExpectedException*` methods MUST be replaced by `->expectException*` methods.
       'php_unit_expectation' => true,
       // Enforce camel (or snake) case for PHPUnit test methods, following configuration.
@@ -346,8 +388,10 @@ return $config
       'phpdoc_no_useless_inheritdoc' => true,
       // Annotations in PHPDoc should be ordered in defined sequence.
       'phpdoc_order' => true,
-      // Order phpdoc tags by value.
+      // Order PHPDoc tags by value.
       'phpdoc_order_by_value' => true,
+      // Orders all `@param` annotations in DocBlocks according to method signature.
+      'phpdoc_param_order' => true,
       // Scalar types should always be written in the same form. `int` not `integer`, `bool` not `boolean`, `float` not `real` or `double`.
       'phpdoc_scalar' => true,
       // Annotations in PHPDoc should be grouped together so that annotations of the same type immediately follow each other. Annotations of a different type are separated by a single blank line.
@@ -360,6 +404,12 @@ return $config
       'phpdoc_tag_casing' => true,
       // Docblocks should only be used on structural elements.
       'phpdoc_to_comment' => true,
+      // Takes `@param` annotations of non-mixed types and adjusts accordingly the function signature. Requires PHP >= 7.0.
+      'phpdoc_to_param_type' => true,
+      // Takes `@var` annotation of non-mixed types and adjusts accordingly the property signature. Requires PHP >= 7.4.
+      'phpdoc_to_property_type' => true,
+      // Takes `@return` annotation of non-mixed types and adjusts accordingly the function signature.
+      'phpdoc_to_return_type' => true,
       // PHPDoc should start and end with content, excluding the very first and last line of the docblocks.
       'phpdoc_trim' => true,
       // Removes extra blank lines after summary and after description in PHPDoc.
@@ -368,6 +418,8 @@ return $config
       'phpdoc_types' => true,
       // Sorts PHPDoc types.
       'phpdoc_types_order' => true,
+      // `@var` and `@type` annotations must have type and name in the correct order.
+      'phpdoc_var_annotation_correct_order' => true,
       // `@var` and `@type` annotations of classy properties should not contain the name.
       'phpdoc_var_without_name' => true,
       // Converts `pow` to the `**` operator.
@@ -380,11 +432,13 @@ return $config
       'regular_callable_call' => true,
       // Local, dynamic and directly referenced variables should not be assigned and directly returned by a function or method.
       'return_assignment' => true,
+      // If the function explicitly returns an array, and has the return type `iterable`, then `yield from` must be used instead of `return`.
+      'return_to_yield_from' => true,
       // Adjust spacing around colon in return type declarations and backed enum types.
       'return_type_declaration' => true,
       // Inside class or interface element `self` should be preferred to the class name itself.
       'self_accessor' => true,
-      // Inside a `final` class or anonymous class `self` should be preferred to `static`.
+      // Inside an enum or `final`/anonymous class, `self` should be preferred over `static`.
       'self_static_accessor' => true,
       // Instructions must be terminated with a semicolon.
       'semicolon_after_instruction' => true,
@@ -410,19 +464,25 @@ return $config
       'single_line_after_imports' => true,
       // Single-line comments must have proper spacing.
       'single_line_comment_spacing' => true,
+      // Single-line comments and multi-line comments with only one line of actual content should use the `//` syntax.
+      'single_line_comment_style' => true,
+      // Empty body of class, interface, trait, enum or function must be abbreviated as `{}` and placed on the same line as the previous symbol, separated by a single space.
+      'single_line_empty_body' => true,
       // Convert double quotes to single quotes for simple strings.
       'single_quote' => true,
       // Ensures a single space after language constructs.
-      'single_space_after_construct' => true,
+      'single_space_around_construct' => true,
       // Each trait `use` must be done as single statement.
       'single_trait_insert_per_statement' => true,
       // Fix whitespace after a semicolon.
       'space_after_semicolon' => true,
+      // Parentheses must be declared using the configured whitespace.
+      'spaces_inside_parentheses' => true,
       // Replace all `<>` with `!=`.
       'standardize_not_equals' => true,
       // Each statement must be indented.
       'statement_indentation' => true,
-      // Lambdas not (indirect) referencing `$this` must be declared `static`.
+      // Lambdas not (indirectly) referencing `$this` must be declared `static`.
       'static_lambda' => true,
       // Comparisons should be strict.
       'strict_comparison' => true,
@@ -444,6 +504,8 @@ return $config
       'ternary_to_null_coalescing' => true,
       // Arrays should be formatted like function/method arguments, without leading or trailing single line space.
       'trim_array_spaces' => true,
+      // Ensure single space between a variable and its type declaration in function arguments and properties.
+      'type_declaration_spaces' => true,
       // A single space or none should be around union type and intersection type operators.
       'types_spaces' => true,
       // Unary operators should be placed adjacent to their operands.
@@ -454,6 +516,12 @@ return $config
       'void_return' => true,
       // In array declaration, there MUST be a whitespace after each comma.
       'whitespace_after_comma_in_array' => true,
+      // Write conditions in Yoda style (`true`), non-Yoda style (`['equal' => false, 'identical' => false, 'less_and_greater' => false]`) or ignore those conditions (`null`) based on configuration.
+      'yoda_style' => [
+        'equal' => false,
+        'identical' => false,
+        'less_and_greater' => false
+      ]
     ]
   )
   ->setFinder(
